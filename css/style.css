@@ -6060,3 +6060,6 @@ ul.insta-info-list {
 #inner-navigation .nav.navbar-nav.showhide>li.active>a {
 color: #e14456 !important
 }
+.d-none{
+    display: none;
+}
