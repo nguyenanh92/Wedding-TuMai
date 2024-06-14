@@ -68,6 +68,7 @@ if(biicore.bgMusic){
 		}
 		audioPlayer.volume = 0.3;
 		audioPlayer.setAttribute("controls", "controls");
+		audioPlayer.autoplay = true;
 		document.body.appendChild(audioPlayer);
 	}, 1000);
 	
