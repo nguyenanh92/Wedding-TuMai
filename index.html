@@ -715,7 +715,7 @@
     </footer>
 
     <script>
-      
+
         const modal = document.getElementById("myModal");
         const openModalBtn = document.getElementById("openModalBtn");
         const closeModalBtn = document.getElementById("closeModalBtn");
@@ -767,7 +767,7 @@
             submitForm(formData)
         });
 
-        async function submitForm(data) {
+         function submitForm(data) {
             try {
                 const formURL = "https://docs.google.com/forms/d/e/1FAIpQLScoTsnIl6GOEpfiwPta4_TqZTFDUpS_6GYyEzovSHvtJ-5bzw/formResponse";
 
@@ -786,34 +786,41 @@
 
                 modal.style.display = "none";
 
-                const response = await fetch(formURL, {
+                fetch(formURL, {
                     method: "POST",
                     body: formData,
                 });
 
-                if (response.ok) {
-                    toast({
-                        title: "Thành công!",
-                        message: "Bạn đã gửi thông tin thành công!.",
-                        type: "success",
-                        duration: 5000
-                    });
-                } else {
-                    toast({
-                        title: "Lỗi!",
-                        message: "Vui lòng thử lại.",
-                        type: "error",
-                        duration: 5000
-                    });
-                    // Hoặc xử lý lỗi cụ thể hơn bằng cách kiểm tra response.status
-                }
-            } catch (error) {
                 toast({
-                    title: "Lỗi!",
-                    message: "Đã có lỗi xảy ra: " + error.message, // Hiển thị thông báo lỗi cụ thể
-                    type: "error",
+                    title: "Thành công!",
+                    message: "Bạn đã gửi thông tin thành công!.",
+                    type: "success",
                     duration: 5000
                 });
+
+                // if (response.ok) {
+                //     toast({
+                //         title: "Thành công!",
+                //         message: "Bạn đã gửi thông tin thành công!.",
+                //         type: "success",
+                //         duration: 5000
+                //     });
+                // } else {
+                //     toast({
+                //         title: "Lỗi!",
+                //         message: "Vui lòng thử lại.",
+                //         type: "error",
+                //         duration: 5000
+                //     });
+                //     // Hoặc xử lý lỗi cụ thể hơn bằng cách kiểm tra response.status
+                // }
+            } catch (error) {
+                // toast({
+                //     title: "Lỗi!",
+                //     message: "Đã có lỗi xảy ra: " + error.message, // Hiển thị thông báo lỗi cụ thể
+                //     type: "error",
+                //     duration: 5000
+                // });
                 console.error(error); // In ra console để debug
             }
         }
