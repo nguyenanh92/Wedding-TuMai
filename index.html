@@ -721,20 +721,17 @@
         const closeModalBtn = document.getElementById("closeModalBtn");
 
         openModalBtn.onclick = function () {
-            document.body.classList.add('modal-open');
             modal.style.display = "block";
         };
 
         closeModalBtn.onclick = function () {
             modal.style.display = "none";
-            document.body.classList.remove('modal-open');
 
         };
 
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
-                document.body.classList.remove('modal-open');
             }
         };
 
@@ -767,7 +764,7 @@
             submitForm(formData)
         });
 
-         function submitForm(data) {
+        function submitForm(data) {
             try {
                 const formURL = "https://docs.google.com/forms/d/e/1FAIpQLScoTsnIl6GOEpfiwPta4_TqZTFDUpS_6GYyEzovSHvtJ-5bzw/formResponse";
 

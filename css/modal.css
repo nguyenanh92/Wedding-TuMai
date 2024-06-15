@@ -1,8 +1,4 @@
 
-body.modal-open {
-    height: 100vh;
-    overflow-y: hidden;
-  }
   /* Modal styles */
   .modal {
     display: none;
@@ -42,7 +38,7 @@ body.modal-open {
   #toast {
     position: fixed;
     top: 32px;
-    right: 5px;
+    right: 10px;
     z-index: 999999;
   }
   
@@ -52,8 +48,8 @@ body.modal-open {
     background-color: #fff;
     border-radius: 2px;
     padding: 20px 0;
-    min-width: 400px;
-    max-width: 450px;
+    min-width: 300px;
+    max-width: 350px;
     border-left: 4px solid;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
     transition: all linear 0.3s;
