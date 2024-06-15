@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="css/responsive.css" />
     <link href="css/plugin.css" rel="stylesheet" type="text/css" />
     <link href="css/test.css" rel="stylesheet" type="text/css" />
+    <link href="css/modal.css" rel="stylesheet" type="text/css" />
 
     <!-- <link rel="preconnect" href="https://fonts.googleapis.com"> -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
@@ -619,7 +620,7 @@
                     <h5>Vui lòng điền các thông tin dưới đây xác nhận tham dự để chúng mình chuẩn bị chu đáo nhất! Trân
                         trọng!</h5>
 
-                    <form>
+                    <form id="form">
                         <div class="form-group">
                             <label for="name">Tên của bạn:</label>
 
@@ -714,27 +715,31 @@
     </footer>
 
     <script>
+      
         const modal = document.getElementById("myModal");
         const openModalBtn = document.getElementById("openModalBtn");
         const closeModalBtn = document.getElementById("closeModalBtn");
 
         openModalBtn.onclick = function () {
+            document.body.classList.add('modal-open');
             modal.style.display = "block";
         };
 
         closeModalBtn.onclick = function () {
             modal.style.display = "none";
+            document.body.classList.remove('modal-open');
+
         };
 
         window.onclick = function (event) {
             if (event.target == modal) {
                 modal.style.display = "none";
+                document.body.classList.remove('modal-open');
             }
         };
 
-        document.querySelector("form").addEventListener("submit", function (event) {
-            event.preventDefault(); // Ngăn chặn hành vi mặc định của form (reload trang)
-            // Lấy giá trị từ các trường input
+        document.querySelector("#form").addEventListener("submit", function (event) {
+            event.preventDefault();
             const name = document.getElementById("name").value;
             const events = Array.from(document.querySelectorAll('input[name="events"]:checked')).map((checkbox) => checkbox.value);
             if (events.length === 0) {
@@ -779,15 +784,14 @@
                 formData.append(fieldGuestOf, data.guestOf);
                 formData.append(fieldMessage, data.message);
 
+                modal.style.display = "none";
+
                 const response = await fetch(formURL, {
                     method: "POST",
                     body: formData,
                 });
 
-                console.log(response);
-                
                 if (response.ok) {
-                    modal.style.display = "none";
                     toast({
                         title: "Thành công!",
                         message: "Bạn đã gửi thông tin thành công!.",
@@ -806,7 +810,7 @@
             } catch (error) {
                 toast({
                     title: "Lỗi!",
-                    message: "Đã có lỗi xảy ra. Vui lòng thử lại.",
+                    message: "Đã có lỗi xảy ra: " + error.message, // Hiển thị thông báo lỗi cụ thể
                     type: "error",
                     duration: 5000
                 });
