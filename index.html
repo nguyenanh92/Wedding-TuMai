@@ -753,7 +753,7 @@
             // Tạo một object chứa dữ liệu
             const formData = {
                 name,
-                events,
+                events: events.join(", "),
                 attendance,
                 guestOf,
                 message,
@@ -761,36 +761,57 @@
 
             submitForm(formData)
         });
+
         async function submitForm(data) {
-            const formURL = "https://docs.google.com/forms/d/e/1FAIpQLScoTsnIl6GOEpfiwPta4_TqZTFDUpS_6GYyEzovSHvtJ-5bzw/formResponse";
-            const fieldName = "entry.1931897512";
-            const fieldEvents = "entry.1973545910";
-            const fieldAttendance = "entry.1662255632";
-            const fieldGuestOf = "entry.609605553";
-            const fieldMessage = "entry.1402045797";
-            const formData = new FormData();
+            try {
+                const formURL = "https://docs.google.com/forms/d/e/1FAIpQLScoTsnIl6GOEpfiwPta4_TqZTFDUpS_6GYyEzovSHvtJ-5bzw/formResponse";
 
-            formData.append(fieldName, data.name);
-            formData.append(fieldEvents, data.events);
-            formData.append(fieldAttendance, data.attendance);
-            formData.append(fieldGuestOf, data.guestOf);
-            formData.append(fieldMessage, data.message);
+                const fieldName = "entry.1931897512";
+                const fieldEvents = "entry.1973545910";
+                const fieldAttendance = "entry.1662255632";
+                const fieldGuestOf = "entry.609605553";
+                const fieldMessage = "entry.1402045797";
+                const formData = new FormData();
 
-            await fetch(formURL, {
-                method: "POST",
-                body: formData,
-            });
+                formData.append(fieldName, data.name);
+                formData.append(fieldEvents, data.events);
+                formData.append(fieldAttendance, data.attendance);
+                formData.append(fieldGuestOf, data.guestOf);
+                formData.append(fieldMessage, data.message);
 
-            modal.style.display = "none";
+                const response = await fetch(formURL, {
+                    method: "POST",
+                    body: formData,
+                });
 
-            toast({
-                title: "Thành công!",
-                message: "Bạn đã gửi thông tin thành công!.",
-                type: "success",
-                duration: 5000
-            });
-
+                if (response.ok) {
+                    modal.style.display = "none";
+                    toast({
+                        title: "Thành công!",
+                        message: "Bạn đã gửi thông tin thành công!.",
+                        type: "success",
+                        duration: 5000
+                    });
+                } else {
+                    toast({
+                        title: "Lỗi!",
+                        message: "Đã có lỗi xảy ra. Vui lòng thử lại.",
+                        type: "error",
+                        duration: 5000
+                    });
+                    // Hoặc xử lý lỗi cụ thể hơn bằng cách kiểm tra response.status
+                }
+            } catch (error) {
+                toast({
+                    title: "Lỗi!",
+                    message: "Đã có lỗi xảy ra. Vui lòng thử lại.",
+                    type: "error",
+                    duration: 5000
+                });
+                console.error(error); // In ra console để debug
+            }
         }
+
     </script>
 
     <script type="text/javascript">
