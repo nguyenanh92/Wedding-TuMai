@@ -784,6 +784,8 @@
                     body: formData,
                 });
 
+                console.log(response);
+                
                 if (response.ok) {
                     modal.style.display = "none";
                     toast({
@@ -795,7 +797,7 @@
                 } else {
                     toast({
                         title: "Lỗi!",
-                        message: "Đã có lỗi xảy ra. Vui lòng thử lại.",
+                        message: "Vui lòng thử lại.",
                         type: "error",
                         duration: 5000
                     });
