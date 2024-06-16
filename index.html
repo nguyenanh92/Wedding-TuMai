@@ -407,14 +407,14 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 col-sm-6 col-xs-6 mix grid-item">
+                <!-- <div class="col-md-4 col-sm-6 col-xs-6 mix grid-item">
                     <div class="item port-popup">
                         <a href="images/gallery/6.jpg" title="">
                             <img src="images/gallery/6.jpg" alt="" />
                             <i class="fa fa-search"></i>
                         </a>
                     </div>
-                </div>
+                </div> -->
                 <div class="col-md-4 col-sm-6 col-xs-6 mix grid-item">
                     <div class="item port-popup">
                         <a href="images/ambum/5.jpg" title="">
@@ -671,92 +671,6 @@
         </div>
     </section>
 
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" id="closeModalBtn">&times;</span>
-            <div class="text-center">
-                <h2>Chung vui cùng chúng mình nhé?</h2>
-            </div>
-            <div class="">
-                <!-- <div class="section-title wow fadeInDown">
-                    <h2>Chung vui cùng chúng mình nhé?</h2>
-                </div> -->
-
-                <div class="container">
-                    <h5>Vui lòng điền các thông tin dưới đây xác nhận tham dự để chúng mình chuẩn bị chu đáo nhất! Trân
-                        trọng!</h5>
-
-                    <form id="form">
-                        <div class="form-group">
-                            <label for="name">Tên của bạn:</label>
-
-                            <input type="text" id="name" name="name" required />
-                        </div>
-
-                        <div class="form-group">
-                            <p>Bạn tham dự được bữa tiệc thành hôn nào?</p>
-
-                            <div class="checkbox-group " style="display: flex; column-gap: 20px; margin-top: 10px;">
-                                <div>
-                                    <input type="checkbox" id="tiecCuoiNhaGai" name="events"
-                                        value="Tiệc cưới nhà gái" style="display: inline-block" />
-
-                                    <label for="tiecCuoiNhaGai" style="display: inline-block">Tiệc cưới nhà gái</label>
-                                </div>
-
-                                <div>
-                                    <input type="checkbox" id="tiecCuoiNhaTrai" name="events"
-                                        value="Tiệc cưới nhà trai" style="display: inline-block" />
-
-                                    <label for="tiecCuoiNhaTrai" style="display: inline-block">Tiệc cưới nhà
-                                        trai</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="attendance">Bạn sẽ đến chứ?</label>
-
-                            <select id="attendance" name="attendance">
-                                <option value="Đến">Mình chắc chắn sẽ đến</option>
-
-                                <option value="Không đến">Rất tiếc mình không thể đến</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <p>Bạn là khách mời của ai?</p>
-
-                            <div style="display: flex; column-gap: 20px">
-                                <div class="">
-                                    <input type="radio" id="bride" name="guestOf" value="Cô Dâu" checked
-                                        style="display: inline-block" />
-
-                                    <label for="bride" style="display: inline-block">&nbsp;Cô dâu</label>
-                                </div>
-
-                                <div class="">
-                                    <input type="radio" id="groom" name="guestOf" value="Chú Rể"
-                                        style="display: inline-block" />
-
-                                    <label for="groom" style="display: inline-block">&nbsp;Chú rể</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Gửi lời chúc tới vợ chồng mình:</label>
-
-                            <textarea id="message" name="message" rows="5"></textarea>
-                        </div>
-
-                        <button type="submit">Xác nhận tham dự</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <footer id="footer" class="footer-widgets"
         style="background-image: url('images/ambum/13.jpg'); background-repeat: no-repeat; background-size: cover; background-position: top; width: 100%">
         <div class="footer-note">
@@ -781,25 +695,24 @@
     </footer>
 
     <script>
+        // const modal = document.getElementById("myModal");
+        // const openModalBtn = document.getElementById("openModalBtn");
+        // const closeModalBtn = document.getElementById("closeModalBtn");
 
-        const modal = document.getElementById("myModal");
-        const openModalBtn = document.getElementById("openModalBtn");
-        const closeModalBtn = document.getElementById("closeModalBtn");
+        // openModalBtn.onclick = function () {
+        //     modal.style.display = "block";
+        // };
 
-        openModalBtn.onclick = function () {
-            modal.style.display = "block";
-        };
+        // closeModalBtn.onclick = function () {
+        //     modal.style.display = "none";
 
-        closeModalBtn.onclick = function () {
-            modal.style.display = "none";
+        // };
 
-        };
-
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        };
+        // window.onclick = function (event) {
+        //     if (event.target == modal) {
+        //         modal.style.display = "none";
+        //     }
+        // };
 
         document.querySelector("#form").addEventListener("submit", function (event) {
             event.preventDefault();
@@ -846,8 +759,6 @@
                 formData.append(fieldAttendance, data.attendance);
                 formData.append(fieldGuestOf, data.guestOf);
                 formData.append(fieldMessage, data.message);
-
-                modal.style.display = "none";
 
                 fetch(formURL, {
                     method: "POST",
