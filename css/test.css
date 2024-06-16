@@ -75,7 +75,7 @@ label {
 .modal {
   display: none;
   position: fixed;
-  z-index: 999;
+  z-index: 99999;
   left: 0;
   top: 0;
   width: 100%;
@@ -110,7 +110,7 @@ label {
 #toast {
   position: fixed;
   top: 32px;
-  right: 32px;
+  right: 0px;
   z-index: 999999;
 }
 
